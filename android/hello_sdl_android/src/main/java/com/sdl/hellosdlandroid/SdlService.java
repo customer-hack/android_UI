@@ -32,8 +32,12 @@ import com.smartdevicelink.transport.MultiplexTransportConfig;
 import com.smartdevicelink.transport.TCPTransportConfig;
 import com.smartdevicelink.util.DebugTool;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Vector;
+
+import server.MyServer;
+import android.util.Log;
 
 public class SdlService extends Service {
 
@@ -46,7 +50,7 @@ public class SdlService extends Service {
 	private static final String SDL_IMAGE_FILENAME  	= "sdl_full_image.png";
 
 	private static final String WELCOME_SHOW 			= "Welcome to HelloSDL";
-	private static final String WELCOME_SPEAK 			= "Welcome to Hello S D L";
+	private static final String WELCOME_SPEAK 			= "Welcome to SDL Server";
 
 	private static final String TEST_COMMAND_NAME 		= "Test Command";
 	private static final int TEST_COMMAND_ID 			= 1;
@@ -61,6 +65,8 @@ public class SdlService extends Service {
 
 	// variable to create and call functions of the SyncProxy
 	private SdlManager sdlManager = null;
+
+	private MyServer wbsvr;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -113,7 +119,7 @@ public class SdlService extends Service {
 		super.onDestroy();
 	}
 
-	private void startProxy() {
+	public void startProxy() {
 		// This logic is to select the correct transport and security levels defined in the selected build flavor
 		// Build flavors are selected by the "build variants" tab typically located in the bottom left of Android Studio
 		// Typically in your app, you will only set one of these.
@@ -203,6 +209,13 @@ public class SdlService extends Service {
 			builder.setAppIcon(appIcon);
 			sdlManager = builder.build();
 			sdlManager.start();
+			wbsvr = new MyServer(sdlManager);
+			try {
+				wbsvr.start();
+			}
+			catch (IOException ex){
+				Log.w ("httpd","server started");
+			}
 		}
 	}
 
@@ -249,7 +262,7 @@ public class SdlService extends Service {
 	/**
 	 * Will show a sample test message on screen as well as speak a sample test message
 	 */
-	private void showTest(){
+	public void showTest(){
 		sdlManager.getScreenManager().beginTransaction();
 		sdlManager.getScreenManager().setTextField1("Command has been selected");
 		sdlManager.getScreenManager().setTextField2("");

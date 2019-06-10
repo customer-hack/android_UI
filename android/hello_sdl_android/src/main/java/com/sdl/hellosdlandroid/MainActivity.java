@@ -6,29 +6,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.io.IOException;
 
-import server.MyServer;
-import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 	private static final String TAG = "MainActivity";
-	MyServer wbsvr;
 
 	@Override
 	protected void onStart() {
 		super.onStart();
-		try {
-			wbsvr.start();
-		}
-		catch (IOException ex){
-			Log.w ("httpd","server started");
-		}
 	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		wbsvr = new MyServer();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		//If we are connected to a module we want to start our SdlService
