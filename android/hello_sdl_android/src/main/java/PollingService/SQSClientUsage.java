@@ -32,7 +32,6 @@ public class SQSClientUsage {
             @Override
             public final void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable e) {
                 try {
-//                    JSONObject jObj = new JSONObject(errorResponse);
                     System.out.println(errorResponse);
                 }
                 catch (Exception ex) {

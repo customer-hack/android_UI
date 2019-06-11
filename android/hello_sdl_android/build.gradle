@@ -59,8 +59,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'org.nanohttpd:nanohttpd:2.2.0'
     implementation 'com.loopj.android:android-async-http:1.4.9'
-    implementation 'org.json:json:20160212'
-//    implementation 'com.amazonaws:aws-android-sdk-core:2.7.0'
-//    implementation 'com.amazonaws:aws-android-sdk-s3:2.7.0'
-//    implementation 'com.amazonaws:aws-android-sdk-ddb:2.7.0'
 }
