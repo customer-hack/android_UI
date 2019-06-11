@@ -39,6 +39,8 @@ import java.util.Vector;
 import PollingService.PollingService;
 import server.MyServer;
 import android.util.Log;
+import PollingService.SQSClientUsage;
+import PollingService.SignData;
 
 public class SdlService extends Service {
 
@@ -71,6 +73,10 @@ public class SdlService extends Service {
 
 	private PollingService poller;
 
+	private boolean START_AWS_POOL = true;
+
+	SQSClientUsage sqscu;
+
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
@@ -84,6 +90,8 @@ public class SdlService extends Service {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			enterForeground();
 		}
+
+		sqscu = new SQSClientUsage();
 	}
 
 	// Helper method to let the service enter foreground mode
@@ -190,15 +198,37 @@ public class SdlService extends Service {
 							}
 						}
 					});
+
+					try
+					{
+						sqscu.setReceivedAwsDataListener(new SQSClientUsage.ReceivedAwsDataListener() {
+							@Override
+							public void onAwsDataReady(SignData data) {
+								System.out.println(data.getUuid());
+							}
+						});
+
+						while(START_AWS_POOL) {
+							sqscu.getSQSmsg();
+							Thread.sleep(10000);
+						}
+
+					}
+					catch (Exception ex) {
+						System.out.println((ex.getMessage()));
+					}
 				}
 
 				@Override
 				public void onDestroy() {
+
 					SdlService.this.stopSelf();
+					START_AWS_POOL = false;
 				}
 
 				@Override
 				public void onError(String info, Exception e) {
+					START_AWS_POOL = false;
 				}
 			};
 

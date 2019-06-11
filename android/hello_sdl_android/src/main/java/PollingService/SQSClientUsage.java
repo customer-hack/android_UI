@@ -74,6 +74,11 @@ public class SQSClientUsage {
                 }
             }
 
+            @Override
+            public boolean getUseSynchronousMode() {
+                return false;
+            }
+
         });
 
     }

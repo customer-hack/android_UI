@@ -11,7 +11,6 @@
       <change beforePath="$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/SQSClientUsage.java" beforeDir="false" afterPath="$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/SQSClientUsage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hello_sdl_android/src/main/java/server/MyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/hello_sdl_android/src/main/java/server/MyServer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="8" selection-start-column="8" selection-end-column="32" />
+            <state relative-caret-position="165">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,7 +47,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/server/MyServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
+            <state relative-caret-position="423">
               <caret line="71" selection-start-line="71" selection-end-line="73" selection-end-column="99" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -57,11 +56,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="209" column="33" selection-start-line="209" selection-start-column="33" selection-end-line="209" selection-end-column="33" />
+            <state relative-caret-position="270">
+              <caret line="207" column="29" lean-forward="true" selection-start-line="207" selection-start-column="29" selection-end-line="207" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#7024#7199#0" expanded="true" />
+                <element signature="e#7662#7663#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,24 +84,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="183">
+              <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#669#670#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hello_sdl_android/build.gradle">
+        <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/SQSClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="60" column="63" selection-start-line="60" selection-start-column="63" selection-end-line="60" selection-end-column="63" />
+            <state relative-caret-position="120">
+              <caret line="8" column="63" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="63" />
+              <folding>
+                <element signature="e#507#508#0" expanded="true" />
+                <element signature="e#552#553#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,12 +112,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/SQSClientUsage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
+            <state relative-caret-position="63">
               <caret line="43" selection-start-line="43" selection-end-line="43" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#634#635#0" expanded="true" />
                 <element signature="e#670#671#0" expanded="true" />
+                <element signature="e#2505#2506#0" expanded="true" />
+                <element signature="e#2549#2550#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -141,11 +150,11 @@
         <option value="$PROJECT_DIR$/hello_sdl_android/build.gradle" />
         <option value="$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/XMLParser.java" />
         <option value="$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SignData.java" />
-        <option value="$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/SQSClientUsage.java" />
         <option value="$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/PollingService.java" />
-        <option value="$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlService.java" />
-        <option value="$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/MainActivity.java" />
         <option value="$PROJECT_DIR$/hello_sdl_android/src/main/java/server/MyServer.java" />
+        <option value="$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/MainActivity.java" />
+        <option value="$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/SQSClientUsage.java" />
+        <option value="$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlService.java" />
       </list>
     </option>
   </component>
@@ -368,10 +377,16 @@
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/SQSClientUsage.java</url>
-          <line>43</line>
+          <url>file://$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlService.java</url>
+          <line>217</line>
           <properties />
-          <option name="timeStamp" value="47" />
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlService.java</url>
+          <line>206</line>
+          <properties />
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -514,12 +529,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/SQSClient.java">
+    <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlRouterService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
+        <state relative-caret-position="45">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
-            <element signature="e#552#553#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -528,6 +550,51 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="60" column="63" selection-start-line="60" selection-start-column="63" selection-end-line="60" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/SQSClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="63" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="63" />
+          <folding>
+            <element signature="e#507#508#0" expanded="true" />
+            <element signature="e#552#553#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/server/MyServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="71" selection-start-line="71" selection-end-line="73" selection-end-column="99" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/SQSClientUsage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#634#635#0" expanded="true" />
+            <element signature="e#670#671#0" expanded="true" />
+            <element signature="e#2505#2506#0" expanded="true" />
+            <element signature="e#2549#2550#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -545,50 +612,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="209" column="33" selection-start-line="209" selection-start-column="33" selection-end-line="209" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/SdlReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="32" />
+        <state relative-caret-position="270">
+          <caret line="207" column="29" lean-forward="true" selection-start-line="207" selection-start-column="29" selection-end-line="207" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/server/MyServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="71" selection-start-line="71" selection-end-line="73" selection-end-column="99" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/PollingService/SQSClientUsage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#634#635#0" expanded="true" />
-            <element signature="e#670#671#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hello_sdl_android/src/main/java/com/sdl/hellosdlandroid/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#669#670#0" expanded="true" />
+            <element signature="e#7024#7199#0" expanded="true" />
+            <element signature="e#7662#7663#0" expanded="true" />
           </folding>
         </state>
       </provider>

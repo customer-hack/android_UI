@@ -16,14 +16,14 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		SQSClientUsage sqscu = new SQSClientUsage();
-		sqscu.setReceivedAwsDataListener(new SQSClientUsage.ReceivedAwsDataListener() {
-			@Override
-			public void onAwsDataReady(SignData data) {
-				System.out.println(data.getUuid());
-			}
-		});
-		sqscu.getSQSmsg();
+//		SQSClientUsage sqscu = new SQSClientUsage();
+//		sqscu.setReceivedAwsDataListener(new SQSClientUsage.ReceivedAwsDataListener() {
+//			@Override
+//			public void onAwsDataReady(SignData data) {
+//				System.out.println(data.getUuid());
+//			}
+//		});
+//		sqscu.getSQSmsg();
 		System.out.println("");
 	}
 	
