@@ -2,13 +2,14 @@ package server;
 
 import android.util.Log;
 
-import java.io.IOException;
 import java.util.Map;
 
+import PollingService.SQSClientUsage;
+import PollingService.SignData;
 import fi.iki.elonen.NanoHTTPD;
 
 import com.sdl.hellosdlandroid.R;
-import com.sdl.hellosdlandroid.SdlService;
+
 import com.smartdevicelink.managers.CompletionListener;
 import com.smartdevicelink.managers.SdlManager;
 import com.smartdevicelink.managers.file.filetypes.SdlArtwork;
@@ -39,10 +40,10 @@ public class MyServer extends NanoHTTPD {
     private final static int PORT = 8080;
     private SdlManager _sdlmgr;
 
+
     public MyServer(SdlManager sdlmgr) {
         super(PORT);
         _sdlmgr = sdlmgr;
-//        start();
         System.out.println( "\nRunning! Point your browsers to http://localhost:8080/ \n" );
     }
 
@@ -64,6 +65,10 @@ public class MyServer extends NanoHTTPD {
         }
         else if (meth.name().equals("POST")){
             if (uri.contains("/obscura")){
+//                showText("Received Unable to get data","Unable to get data");
+//                return newFixedLengthResponse(Response.Status.OK, "text/plain","Unable to get data");
+
+
                 String uuid = params.get("data");
                 showText("Received " + uuid, uuid);
                 return newFixedLengthResponse(Response.Status.OK, "text/plain","Received " + uuid);

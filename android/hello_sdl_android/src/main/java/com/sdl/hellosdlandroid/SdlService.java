@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Vector;
 
+import PollingService.PollingService;
 import server.MyServer;
 import android.util.Log;
 
@@ -67,6 +68,8 @@ public class SdlService extends Service {
 	private SdlManager sdlManager = null;
 
 	private MyServer wbsvr;
+
+	private PollingService poller;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -209,6 +212,7 @@ public class SdlService extends Service {
 			builder.setAppIcon(appIcon);
 			sdlManager = builder.build();
 			sdlManager.start();
+
 			wbsvr = new MyServer(sdlManager);
 			try {
 				wbsvr.start();

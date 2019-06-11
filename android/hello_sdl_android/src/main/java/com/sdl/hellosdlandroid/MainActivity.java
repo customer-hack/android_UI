@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import PollingService.SQSClientUsage;
+import PollingService.SignData;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -16,7 +17,14 @@ public class MainActivity extends AppCompatActivity {
 	protected void onStart() {
 		super.onStart();
 		SQSClientUsage sqscu = new SQSClientUsage();
+		sqscu.setReceivedAwsDataListener(new SQSClientUsage.ReceivedAwsDataListener() {
+			@Override
+			public void onAwsDataReady(SignData data) {
+				System.out.println(data.getUuid());
+			}
+		});
 		sqscu.getSQSmsg();
+		System.out.println("");
 	}
 	
 	@Override
@@ -50,4 +58,5 @@ public class MainActivity extends AppCompatActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
 }
