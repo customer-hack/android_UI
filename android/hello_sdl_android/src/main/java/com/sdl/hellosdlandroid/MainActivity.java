@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import PollingService.SQSClientUsage;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
+		SQSClientUsage sqscu = new SQSClientUsage();
+		sqscu.getSQSmsg();
 	}
 	
 	@Override
