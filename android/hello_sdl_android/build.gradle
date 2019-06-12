@@ -59,4 +59,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'org.nanohttpd:nanohttpd:2.2.0'
     implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'commons-io:commons-io:2.6'
 }

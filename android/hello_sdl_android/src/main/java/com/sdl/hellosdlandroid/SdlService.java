@@ -17,30 +17,39 @@ import com.smartdevicelink.managers.SdlManagerListener;
 import com.smartdevicelink.managers.file.filetypes.SdlArtwork;
 import com.smartdevicelink.protocol.enums.FunctionID;
 import com.smartdevicelink.proxy.RPCNotification;
+import com.smartdevicelink.proxy.RPCResponse;
 import com.smartdevicelink.proxy.TTSChunkFactory;
 import com.smartdevicelink.proxy.rpc.AddCommand;
 import com.smartdevicelink.proxy.rpc.MenuParams;
 import com.smartdevicelink.proxy.rpc.OnCommand;
 import com.smartdevicelink.proxy.rpc.OnHMIStatus;
+import com.smartdevicelink.proxy.rpc.SetDisplayLayout;
+import com.smartdevicelink.proxy.rpc.SetDisplayLayoutResponse;
 import com.smartdevicelink.proxy.rpc.Speak;
 import com.smartdevicelink.proxy.rpc.enums.AppHMIType;
 import com.smartdevicelink.proxy.rpc.enums.FileType;
 import com.smartdevicelink.proxy.rpc.enums.HMILevel;
+import com.smartdevicelink.proxy.rpc.enums.PredefinedLayout;
 import com.smartdevicelink.proxy.rpc.listeners.OnRPCNotificationListener;
+import com.smartdevicelink.proxy.rpc.listeners.OnRPCResponseListener;
 import com.smartdevicelink.transport.BaseTransportConfig;
 import com.smartdevicelink.transport.MultiplexTransportConfig;
 import com.smartdevicelink.transport.TCPTransportConfig;
 import com.smartdevicelink.util.DebugTool;
 
+import org.apache.commons.io.FilenameUtils;
+
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Vector;
 
 import PollingService.PollingService;
-import server.MyServer;
-import android.util.Log;
 import PollingService.SQSClientUsage;
 import PollingService.SignData;
+import server.MyServer;
+
+import static com.smartdevicelink.proxy.rpc.enums.PredefinedLayout.LARGE_GRAPHIC_ONLY;
 
 public class SdlService extends Service {
 
@@ -176,9 +185,9 @@ public class SdlService extends Service {
 						public void onNotified(RPCNotification notification) {
 							OnHMIStatus status = (OnHMIStatus) notification;
 							if (status.getHmiLevel() == HMILevel.HMI_FULL && ((OnHMIStatus) notification).getFirstRun()) {
-								sendCommands();
-								performWelcomeSpeak();
-								performWelcomeShow();
+//								sendCommands();
+//								performWelcomeSpeak();
+//								performWelcomeShow();
 							}
 						}
 					});
@@ -199,18 +208,33 @@ public class SdlService extends Service {
 						}
 					});
 
+					// Pre-upload all possible images
+					uploadImage("do_not_enter.jpg", R.drawable.do_not_enter, FileType.GRAPHIC_JPEG);
+					uploadImage("ingalls_historical_marker.jpg", R.drawable.ingalls_historical_marker, FileType.GRAPHIC_JPEG);
+					uploadImage("no_right_turn.jpg", R.drawable.no_right_turn, FileType.GRAPHIC_JPEG);
+					uploadImage("road_work_ahead.jpg", R.drawable.road_work_ahead, FileType.GRAPHIC_JPEG);
+					uploadImage("speed_limit_30.jpg", R.drawable.speed_limit_30, FileType.GRAPHIC_JPEG);
+					uploadImage("detroitchimera.jpg", R.drawable.detroitchimera, FileType.GRAPHIC_JPEG);
+					uploadImage("sad_face.jpg", R.drawable.sad_face, FileType.GRAPHIC_JPEG);
+					System.out.println("All img files uploaded");
+
 					try
 					{
 						sqscu.setReceivedAwsDataListener(new SQSClientUsage.ReceivedAwsDataListener() {
 							@Override
 							public void onAwsDataReady(SignData data) {
 								System.out.println(data.getUuid());
+
+								SdlArtwork uuidSdlArt = getSdlArtworkfromUuid(data.getUuid());
+
+								showTextArt(data.getText1(),data.getText2(),data.getTts(), uuidSdlArt);
 							}
 						});
 
 						while(START_AWS_POOL) {
 							sqscu.getSQSmsg();
 							Thread.sleep(10000);
+							START_AWS_POOL = false;
 						}
 
 					}
@@ -253,6 +277,56 @@ public class SdlService extends Service {
 		}
 	}
 
+	private SdlArtwork getSdlArtworkfromUuid (String uuid){
+//		final String imgName = FilenameUtils.getBaseName(fileName);
+
+		String fileName = "";
+		int resourceID = 0;
+		FileType fileType = null;
+
+		if (uuid.equals("12345")){
+			fileName = "sad_face.jpg";
+			resourceID = R.drawable.sad_face;
+			fileType = FileType.GRAPHIC_JPEG;
+		}
+		else if (uuid.equals("E53EEB38DE48")){
+			fileName = "no_right_turn.jpg";
+			resourceID = R.drawable.no_right_turn;
+			fileType = FileType.GRAPHIC_JPEG;
+		}
+		else if (uuid.equals("B9378CE25608")){
+			fileName = "road_work_ahead.jpg";
+			resourceID = R.drawable.road_work_ahead;
+			fileType = FileType.GRAPHIC_JPEG;
+		}
+		else if (uuid.equals("03B84453676B")){
+			fileName = "do_not_enter.jpg";
+			resourceID = R.drawable.do_not_enter;
+			fileType = FileType.GRAPHIC_JPEG;
+		}
+		else if (uuid.equals("749324AD9639")){
+			fileName = "speed_limit_30.jpg";
+			resourceID = R.drawable.speed_limit_30;
+			fileType = FileType.GRAPHIC_JPEG;
+		}
+		else if (uuid.equals("B0EA8B0B1223")){
+			fileName = "ingalls_historical_marker.jpg";
+			resourceID = R.drawable.ingalls_historical_marker;
+			fileType = FileType.GRAPHIC_JPEG;
+		}
+		else if (uuid.equals("0A8E4C5B4892")){
+			fileName = "detroitchimera.jpg";
+			resourceID = R.drawable.detroitchimera;
+			fileType = FileType.GRAPHIC_JPEG;
+		}
+
+		SdlArtwork sdlArtwork = new SdlArtwork(fileName, fileType, resourceID, true);
+
+		return sdlArtwork;
+	}
+
+
+
 	/**
 	 *  Add commands for the app on SDL.
 	 */
@@ -293,6 +367,17 @@ public class SdlService extends Service {
 		});
 	}
 
+	public void uploadImage(final String fileName, int resourceID, FileType fileType) {
+		SdlArtwork sdlArtwork = new SdlArtwork(fileName, fileType, resourceID, true);
+		final String imgName = FilenameUtils.getBaseName(fileName);
+		sdlManager.getFileManager().uploadArtwork(sdlArtwork, new CompletionListener() {
+			@Override
+			public void onComplete(boolean success) {
+				System.out.println("Artwork uploaded");
+			}
+		});
+	}
+
 	/**
 	 * Will show a sample test message on screen as well as speak a sample test message
 	 */
@@ -305,5 +390,57 @@ public class SdlService extends Service {
 		sdlManager.sendRPC(new Speak(TTSChunkFactory.createSimpleTTSChunks(TEST_COMMAND_NAME)));
 	}
 
+	private void showText(String txtmsg, String voicemsg ){
+		sdlManager.getScreenManager().beginTransaction();
+		sdlManager.getScreenManager().setTextField1(txtmsg);
+		sdlManager.getScreenManager().setTextField2("");
+		sdlManager.getScreenManager().commit(null);
+
+		sdlManager.sendRPC(new Speak(TTSChunkFactory.createSimpleTTSChunks(voicemsg)));
+	}
+
+	private void showTextArt(String txtmsg1, String txtmsg2, String voicemsg, SdlArtwork sdlArtwork){
+
+		// Set Screen Layout
+		SetDisplayLayout setDisplayLayoutRequest = new SetDisplayLayout();
+		setDisplayLayoutRequest.setDisplayLayout(PredefinedLayout.GRAPHIC_WITH_TEXT.toString());
+		setDisplayLayoutRequest.setOnRPCResponseListener(new OnRPCResponseListener() {
+			@Override
+			public void onResponse(int correlationId, RPCResponse response) {
+				if(((SetDisplayLayoutResponse) response).getSuccess()){
+					Log.i("SdlService", "Display layout set successfully.");
+					// Proceed with more user interface RPCs
+				}else{
+					Log.i("SdlService", "Display layout request rejected.");
+				}
+			}
+		});
+
+		sdlManager.sendRPC(setDisplayLayoutRequest);
+
+		// Set Screen Content
+//		uploadImage(fileName, R.drawable.detroitchimera, FileType.GRAPHIC_PNG);
+//		int resID = getResId(imgName, R.drawable.class);
+//		SdlArtwork sdlArtwork = new SdlArtwork(fileName, FileType.GRAPHIC_PNG, resID, true);
+
+		sdlManager.getScreenManager().beginTransaction();
+		sdlManager.getScreenManager().setPrimaryGraphic(sdlArtwork);
+		sdlManager.getScreenManager().setTextField1(txtmsg1);
+		sdlManager.getScreenManager().setTextField2(txtmsg2);
+		sdlManager.getScreenManager().commit(null);
+
+//		sdlManager.sendRPC(new Speak(TTSChunkFactory.createSimpleTTSChunks(voicemsg)));
+	}
+
+	public static int getResId(String resName, Class<?> c) {
+
+		try {
+			Field idField = c.getDeclaredField(resName);
+			return idField.getInt(idField);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 
 }
